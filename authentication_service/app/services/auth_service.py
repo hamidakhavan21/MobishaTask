@@ -31,5 +31,3 @@ class AuthService:
             return response
         return response
 
-
-        ##https://seller.digikala.com/api/v2/variants?page=1&size=10&sort=product_variant_id&order=desc
