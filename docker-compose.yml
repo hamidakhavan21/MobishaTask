@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  price_service:
+    build:
+      context: ./price_service
+    ports:
+      - "5001:5000"
+    environment:
+      - KAFKA_BROKER_URL=kafka:9092
+
+  message_broker:
+    build:
+      context: ./message_broker
+    depends_on:
+      - kafka
+    environment:
+      - KAFKA_BROKER_URL=kafka:9092
+
+  kafka:
+    image: bitnami/kafka:latest
+    environment:
+      - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
+      - ALLOW_PLAINTEXT_LISTENER=yes
+    ports:
+      - "9092:9092"
+
+  zookeeper:
+    image: bitnami/zookeeper:latest
+    ports:
+      - "2181:2181"
