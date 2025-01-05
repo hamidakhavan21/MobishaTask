@@ -18,7 +18,6 @@ async def update_price(username: str):
         raise ValueError("Product ID not found!")
 
     new_price = math.floor(current_price * (1 + (PERCENTAGE_INCREASE / 100)) / 100) * 100
-    new_price = int(current_price * (1 + (PERCENTAGE_INCREASE / 100)))
     payload = {
         "id": product_id,
         "selling_price": new_price,
